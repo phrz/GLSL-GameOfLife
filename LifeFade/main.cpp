@@ -38,6 +38,7 @@ public:
 	}
 };
 
+/*
 static int neighbors[16] = {-1,-1,-1,0,-1,1,0,-1,0,1,1,-1,1,0,1,1};
 inline int neighborSum(Matrix& m, long i, long j) {
 	int sum = 0;
@@ -65,7 +66,10 @@ inline void iterateLife(Matrix& next, Matrix& m) {
 		}
 	}
 }
+*/
 
+/*
+// matrix to pixels WITH FADE
 void matrixToPixels(Matrix& m, std::valarray<sf::Uint8>& pixels, sf::Uint8 fadeRate) {
 	for(long j = 0; j < m.columns; ++j) {
 		for(long i = 0; i < m.rows; ++i) {
@@ -84,14 +88,18 @@ void matrixToPixels(Matrix& m, std::valarray<sf::Uint8>& pixels, sf::Uint8 fadeR
 		}
 	}
 }
+*/
 
+/*
 sf::Texture generateColormapTexture() {
 	sf::Texture tex;
 	tex.create(256, 1);
 	tex.update(&magmaColormap[0]);
 	return tex;
 }
+*/
 
+/*
 void setInitialStateRandomly(Matrix* buffer) {
 	// randomize the initial state
 	// hardware random device to seed the generator
@@ -108,63 +116,129 @@ void setInitialStateRandomly(Matrix* buffer) {
 		}
 	}
 }
+*/
 
-static unsigned
-width = 600,
-height = 400,
-scaleFactor = 4,
-epochsPerSecond = 120,
-fadeRate = 2;
+sf::Texture generateRandomTexture(unsigned w, unsigned h) {
+	sf::Texture tex;
+	tex.create(w, h);
+	
+	// randomize the initial state
+	// hardware random device to seed the generator
+	std::random_device device;
+	// mersenne twister generator
+	std::mt19937 generator(device());
+	// uniform integer distribution that employs generator
+	std::uniform_int_distribution<> distribution(0,1);
+	
+	std::size_t size = w*h*4; // rgba
+	std::valarray<sf::Uint8> b(size);
+	sf::Uint8 x;
+	for(size_t i = 0; i < size; i+=4) {
+		x = 255 * distribution(generator);
+		b[i] = x;     // R
+		b[i+1] = x;   // G
+		b[i+2] = x;   // B
+		b[i+3] = 255; // A
+	}
+	
+	tex.update(&b[0]);
+	
+	return tex;
+}
+
+std::unique_ptr<sf::Shader> loadShader(std::string const& fileName, sf::Shader::Type type) {
+	if (!sf::Shader::isAvailable()) {
+		throw std::runtime_error("Shaders unavailable.");
+	}
+	
+	auto shader = std::make_unique<sf::Shader>();
+	if (!shader->loadFromFile(fileName.c_str(), type)) {
+		throw std::runtime_error("Could not load shader.");
+	}
+	return shader;
+}
+
+std::unique_ptr<sf::Shader> loadIterateLifeShader(unsigned width, unsigned height) {
+	auto shader = loadShader("IterateLife.frag", sf::Shader::Fragment);
+	shader->setUniform("resolution", sf::Vector2f(width, height));
+	return shader;
+}
+
+void iterateLife(sf::RenderTexture& resultBuffer, sf::Sprite& sourceSprite, sf::Shader* shader) {
+	resultBuffer.draw(sourceSprite, shader);
+	resultBuffer.display();
+}
+
+static unsigned scaleFactor = 1;
+//epochsPerSecond = 120,
+//fadeRate = 2;
 
 int main(int argc, char *argv[]) {
 	
 	/* =============================
 	   SETUP
 	   ============================= */
-	int microsecondsPerEpoch = 1000000 / epochsPerSecond;
+//	int microsecondsPerEpoch = 1000000 / epochsPerSecond;
 	
 	// Fullscreen video modes
 	// (first is best)
 	auto mode = sf::VideoMode::getFullscreenModes()[0];
-	width = mode.width / scaleFactor;
-	height = mode.height / scaleFactor;
+	unsigned width = mode.width / scaleFactor;
+	unsigned height = mode.height / scaleFactor;
 	
 	// Game state matrix
-	Matrix buffers[2] {
-		Matrix(height,width), Matrix(height,width)
-	};
-	Matrix *buffer = &buffers[0], *nextBuffer = &buffers[1];
-	std::valarray<sf::Uint8> pixels(height*width*4);
-	setInitialStateRandomly(buffer);
+//	Matrix buffers[2] {
+//		Matrix(height,width), Matrix(height,width)
+//	};
+//	Matrix *buffer = &buffers[0], *nextBuffer = &buffers[1];
+//	std::valarray<sf::Uint8> pixels(height*width*4);
+//	setInitialStateRandomly(buffer);
 	
 	// Window
 	sf::RenderWindow window = sf::RenderWindow(mode, "Life", sf::Style::Fullscreen);
 	window.setVerticalSyncEnabled(true);
+//	window.setFramerateLimit(1);
 	
 	// Shader
+	/*
 	sf::Texture magmaColormapTexture = generateColormapTexture();
 	
 	if (!sf::Shader::isAvailable()) {
 		std::cout << "Shaders unavailable :(" << std::endl;
 		return EXIT_FAILURE;
 	}
-	
+
 	sf::Shader shader;
 	if (!shader.loadFromFile("ColorMap.frag", sf::Shader::Fragment)) {
 		std::cout << "Could not load shader :(" << std::endl;
 		return EXIT_FAILURE;
 	}
 	shader.setUniform("colormap", magmaColormapTexture);
+	*/
 	
-	// Texture and sprite
-	sf::Texture lifeTexture;
-	sf::Sprite lifeSprite;
+	auto initialTexture = generateRandomTexture(width, height);
 	
-	lifeTexture.create(width, height);
-	lifeTexture.setRepeated(false);
+	// display sprite
+	// (we temporarily load the initial state texture into this sprite
+	// to draw it into the iteration render-texture (a non-display buffer)
+	// and then set its texture to that of the render-texture for actual
+	// display, to avoid making a second sprite)
+	sf::Sprite renderSprite;
+	renderSprite.setTexture(initialTexture);
 	
-	lifeSprite.setScale(sf::Vector2f(scaleFactor, scaleFactor));
-	lifeSprite.setTexture(lifeTexture);
+	// Render texture (hidden buffer) and shader
+	auto iterateLifeShader = loadIterateLifeShader(width, height);
+	sf::RenderTexture iterateLifeRender;
+	iterateLifeRender.create(width, height);
+	iterateLifeRender.draw(renderSprite);
+	iterateLifeRender.display();
+	iterateLifeRender.setRepeated(false);
+	
+	renderSprite.setTexture(iterateLifeRender.getTexture());
+	
+	sf::Sprite displaySprite;
+	displaySprite.setScale(sf::Vector2f(scaleFactor, scaleFactor));
+	displaySprite.setTexture(iterateLifeRender.getTexture());
 	
 	/* =============================
 	   END SETUP
@@ -174,6 +248,23 @@ int main(int argc, char *argv[]) {
 	   GAME LOOP
 	   ============================= */
 	
+	while(window.isOpen()) {
+		// handle system events (window close)
+		sf::Event event;
+		while(window.pollEvent(event)) {
+			if(event.type == sf::Event::Closed) {
+				window.close();
+			}
+		}
+		
+		iterateLife(iterateLifeRender, renderSprite, iterateLifeShader.get());
+		
+		window.clear();
+		window.draw(displaySprite);
+		window.display();
+	}
+	
+	/*
 	sf::Clock clock;
 	bool lifeNeedsUpdate = true;
 	while(window.isOpen()) {
@@ -205,6 +296,7 @@ int main(int argc, char *argv[]) {
 		window.draw(lifeSprite, &shader);
 		window.display();
 	}
+	*/
 	
 	return EXIT_SUCCESS;
 }

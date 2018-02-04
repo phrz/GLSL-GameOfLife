@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27A2A0322026426600C3E7C7 /* ColorMap.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27A2A0312026368300C3E7C7 /* ColorMap.frag */; };
+		27A2A03620266ACF00C3E7C7 /* IterateLife.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27A2A03520266A3600C3E7C7 /* IterateLife.frag */; };
 		27D2F780202512400068D663 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D2F77F202512400068D663 /* main.cpp */; };
 		27D2F78C202512930068D663 /* libsfml-audio.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D2F787202512930068D663 /* libsfml-audio.2.4.2.dylib */; };
 		27D2F78D202512930068D663 /* libsfml-window.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D2F788202512930068D663 /* libsfml-window.2.4.2.dylib */; };
@@ -23,6 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				27A2A03620266ACF00C3E7C7 /* IterateLife.frag in CopyFiles */,
 				27A2A0322026426600C3E7C7 /* ColorMap.frag in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -31,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		27A2A0312026368300C3E7C7 /* ColorMap.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ColorMap.frag; sourceTree = "<group>"; };
+		27A2A03520266A3600C3E7C7 /* IterateLife.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IterateLife.frag; sourceTree = "<group>"; };
 		27D2F77C202512400068D663 /* LifeFade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LifeFade; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D2F77F202512400068D663 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		27D2F787202512930068D663 /* libsfml-audio.2.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.4.2.dylib"; path = "../../../../usr/local/Cellar/sfml/2.4.2_1/lib/libsfml-audio.2.4.2.dylib"; sourceTree = "<group>"; };
@@ -77,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				27D2F77F202512400068D663 /* main.cpp */,
+				27A2A03520266A3600C3E7C7 /* IterateLife.frag */,
 				27A2A0312026368300C3E7C7 /* ColorMap.frag */,
 			);
 			path = LifeFade;
@@ -265,6 +269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M8MME6Q9DA;
@@ -282,6 +287,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = M8MME6Q9DA;
