@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2753F31A2028178D00F8D1F1 /* libfmt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2753F3192028178D00F8D1F1 /* libfmt.a */; };
+		2753F31E2028196A00F8D1F1 /* MotionBlurShader.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2753F31D2028187A00F8D1F1 /* MotionBlurShader.frag */; };
+		2753F32020281C1C00F8D1F1 /* FadeShader.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2753F31F20281A1E00F8D1F1 /* FadeShader.frag */; };
+		2753F3232028221500F8D1F1 /* ImageFader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2753F3212028221500F8D1F1 /* ImageFader.cpp */; };
+		2753F326202827C600F8D1F1 /* ColorMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2753F324202827C600F8D1F1 /* ColorMapper.cpp */; };
 		27A2A0322026426600C3E7C7 /* ColorMap.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27A2A0312026368300C3E7C7 /* ColorMap.frag */; };
 		27A2A03620266ACF00C3E7C7 /* IterateLife.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = 27A2A03520266A3600C3E7C7 /* IterateLife.frag */; };
+		27A2A03A2026DB3F00C3E7C7 /* LifeIterator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27A2A0382026DB3F00C3E7C7 /* LifeIterator.cpp */; };
+		27A2A03D2026DD3C00C3E7C7 /* Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27A2A03B2026DD3C00C3E7C7 /* Shaders.cpp */; };
 		27D2F780202512400068D663 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 27D2F77F202512400068D663 /* main.cpp */; };
 		27D2F78C202512930068D663 /* libsfml-audio.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D2F787202512930068D663 /* libsfml-audio.2.4.2.dylib */; };
 		27D2F78D202512930068D663 /* libsfml-window.2.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 27D2F788202512930068D663 /* libsfml-window.2.4.2.dylib */; };
@@ -24,6 +31,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				2753F32020281C1C00F8D1F1 /* FadeShader.frag in CopyFiles */,
+				2753F31E2028196A00F8D1F1 /* MotionBlurShader.frag in CopyFiles */,
 				27A2A03620266ACF00C3E7C7 /* IterateLife.frag in CopyFiles */,
 				27A2A0322026426600C3E7C7 /* ColorMap.frag in CopyFiles */,
 			);
@@ -32,8 +41,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2753F3192028178D00F8D1F1 /* libfmt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfmt.a; path = ../../../../usr/local/Cellar/fmt/4.1.0/lib/libfmt.a; sourceTree = "<group>"; };
+		2753F31D2028187A00F8D1F1 /* MotionBlurShader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = MotionBlurShader.frag; sourceTree = "<group>"; };
+		2753F31F20281A1E00F8D1F1 /* FadeShader.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = FadeShader.frag; sourceTree = "<group>"; };
+		2753F3212028221500F8D1F1 /* ImageFader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageFader.cpp; sourceTree = "<group>"; };
+		2753F3222028221500F8D1F1 /* ImageFader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ImageFader.hpp; sourceTree = "<group>"; };
+		2753F324202827C600F8D1F1 /* ColorMapper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColorMapper.cpp; sourceTree = "<group>"; };
+		2753F325202827C600F8D1F1 /* ColorMapper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ColorMapper.hpp; sourceTree = "<group>"; };
 		27A2A0312026368300C3E7C7 /* ColorMap.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = ColorMap.frag; sourceTree = "<group>"; };
 		27A2A03520266A3600C3E7C7 /* IterateLife.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = IterateLife.frag; sourceTree = "<group>"; };
+		27A2A0382026DB3F00C3E7C7 /* LifeIterator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LifeIterator.cpp; sourceTree = "<group>"; };
+		27A2A0392026DB3F00C3E7C7 /* LifeIterator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LifeIterator.hpp; sourceTree = "<group>"; };
+		27A2A03B2026DD3C00C3E7C7 /* Shaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Shaders.cpp; sourceTree = "<group>"; };
+		27A2A03C2026DD3C00C3E7C7 /* Shaders.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Shaders.hpp; sourceTree = "<group>"; };
 		27D2F77C202512400068D663 /* LifeFade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LifeFade; sourceTree = BUILT_PRODUCTS_DIR; };
 		27D2F77F202512400068D663 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		27D2F787202512930068D663 /* libsfml-audio.2.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libsfml-audio.2.4.2.dylib"; path = "../../../../usr/local/Cellar/sfml/2.4.2_1/lib/libsfml-audio.2.4.2.dylib"; sourceTree = "<group>"; };
@@ -48,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2753F31A2028178D00F8D1F1 /* libfmt.a in Frameworks */,
 				27D2F78C202512930068D663 /* libsfml-audio.2.4.2.dylib in Frameworks */,
 				27D2F78D202512930068D663 /* libsfml-window.2.4.2.dylib in Frameworks */,
 				27D2F78E202512930068D663 /* libsfml-network.2.4.2.dylib in Frameworks */,
@@ -80,8 +101,18 @@
 			isa = PBXGroup;
 			children = (
 				27D2F77F202512400068D663 /* main.cpp */,
+				27A2A0392026DB3F00C3E7C7 /* LifeIterator.hpp */,
+				27A2A0382026DB3F00C3E7C7 /* LifeIterator.cpp */,
+				2753F3222028221500F8D1F1 /* ImageFader.hpp */,
+				2753F3212028221500F8D1F1 /* ImageFader.cpp */,
+				2753F325202827C600F8D1F1 /* ColorMapper.hpp */,
+				2753F324202827C600F8D1F1 /* ColorMapper.cpp */,
+				27A2A03C2026DD3C00C3E7C7 /* Shaders.hpp */,
+				27A2A03B2026DD3C00C3E7C7 /* Shaders.cpp */,
 				27A2A03520266A3600C3E7C7 /* IterateLife.frag */,
 				27A2A0312026368300C3E7C7 /* ColorMap.frag */,
+				2753F31D2028187A00F8D1F1 /* MotionBlurShader.frag */,
+				2753F31F20281A1E00F8D1F1 /* FadeShader.frag */,
 			);
 			path = LifeFade;
 			sourceTree = "<group>";
@@ -89,6 +120,7 @@
 		27D2F786202512920068D663 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2753F3192028178D00F8D1F1 /* libfmt.a */,
 				27D2F787202512930068D663 /* libsfml-audio.2.4.2.dylib */,
 				27D2F78B202512930068D663 /* libsfml-graphics.2.4.2.dylib */,
 				27D2F789202512930068D663 /* libsfml-network.2.4.2.dylib */,
@@ -155,6 +187,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A2A03D2026DD3C00C3E7C7 /* Shaders.cpp in Sources */,
+				27A2A03A2026DB3F00C3E7C7 /* LifeIterator.cpp in Sources */,
+				2753F3232028221500F8D1F1 /* ImageFader.cpp in Sources */,
+				2753F326202827C600F8D1F1 /* ColorMapper.cpp in Sources */,
 				27D2F780202512400068D663 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +313,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/sfml/2.4.2_1/lib,
+					/usr/local/Cellar/fmt/4.1.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
@@ -296,6 +333,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/sfml/2.4.2_1/lib,
+					/usr/local/Cellar/fmt/4.1.0/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = /usr/local/include;
