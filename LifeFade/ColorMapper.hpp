@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <valarray>
+#include <fmt/format.h>
 #include "Shaders.hpp"
 
 #ifndef ColorMapper_hpp

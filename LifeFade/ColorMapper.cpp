@@ -13,7 +13,8 @@ ColorMapper::ColorMapper() {}
 void ColorMapper::load(std::valarray<sf::Uint8>&& colormap) {
 	this->colormap = std::move(colormap);
 	if(this->colormap.size() != 256*4) { // 256 rgba vals
-		throw std::invalid_argument("A colormap is 1024 floats, i.e. 256 RGBA values in sequence");
+		
+		throw std::invalid_argument(fmt::format("A colormap is 1024 floats, i.e. 256 RGBA values in sequence ({:d} given)", this->colormap.size()));
 	}
 	
 	colormapTexture.create(256, 1);
