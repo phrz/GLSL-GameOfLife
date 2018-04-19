@@ -117,7 +117,8 @@ int main(int argc, char *argv[]) {
 	imageFader.start(lifeIterator.texture());
 	
 	ColorMapper colorMapper;
-	colorMapper.load(generateGradientColormap({255, 197, 0},{194, 21, 0})); // kyoto
+	colorMapper.load(generateMagmaColormap()); // Matplotlib `magma` colormap
+//	colorMapper.load(generateGradientColormap({255, 197, 0},{194, 21, 0})); // kyoto
 //	colorMapper.load(generateGradientColormap({255,107,107},{85,98,112})); // cheer up emo kid
 	
 	sf::Sprite displaySprite;
