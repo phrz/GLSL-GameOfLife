@@ -16,6 +16,7 @@
 
 class ColorMapper {
 private:
+	static const std::string colorMap_frag;
 	std::unique_ptr<sf::Shader> _shader;
 	sf::Texture colormapTexture;
 	std::valarray<sf::Uint8> colormap;

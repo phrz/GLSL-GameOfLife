@@ -11,6 +11,7 @@
 #ifndef Shaders_hpp
 #define Shaders_hpp
 
+std::unique_ptr<sf::Shader> loadShaderString(std::string const& shaderLiteral, sf::Shader::Type type);
 std::unique_ptr<sf::Shader> loadShader(std::string const& fileName, sf::Shader::Type type);
 std::unique_ptr<sf::Shader> loadIterateLifeShader(unsigned width, unsigned height);
 std::unique_ptr<sf::Shader> loadFadeShader();
